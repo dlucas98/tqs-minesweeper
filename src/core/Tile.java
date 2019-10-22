@@ -1,7 +1,7 @@
 package core;
 
 public class Tile {
-	enum Status {
+	public enum Status {
 		OPEN,
 		MINE,
 		MARK,
@@ -41,7 +41,7 @@ public class Tile {
 	}
 	
 	public Tile.Status open() {
-		return null;
+
 	}
 	
 	public void mark() {
