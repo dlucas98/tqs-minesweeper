@@ -34,6 +34,10 @@ public class TileTest {
 		assertEquals(8, tile.getnMines());
 		tile.setnMines(150);
 		assertEquals(8, tile.getnMines());
+		tile.setnMines(-1);
+		assertEquals(0, tile.getnMines());
+		tile.setnMines(-100);
+		assertEquals(0, tile.getnMines());
 	}
 	
 	@Test
