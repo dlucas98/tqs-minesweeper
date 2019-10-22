@@ -42,6 +42,8 @@ public class TileTest {
 		assertEquals(Tile.Status.HIDDEN, tile.getStatus());
 		tile.mark();
 		assertEquals(Tile.Status.MARK, tile.getStatus());
+		tile.mark();
+		assertEquals(Tile.Status.HIDDEN, tile.getStatus());
 	}
 	
 	@Test
