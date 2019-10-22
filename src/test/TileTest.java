@@ -65,4 +65,14 @@ public class TileTest {
 		tile.open();
 		assertEquals(Tile.Status.OPEN, tile.getStatus());
 	}
+	
+	@Test
+	public void testCursor() {
+		Tile tile = new Tile(false);
+		assertEquals(false, tile.hasCursor());
+		tile.setHasCursor(true);
+		assertEquals(true, tile.hasCursor());
+		tile.setHasCursor(false);
+		assertEquals(false, tile.hasCursor());
+	}
 }
