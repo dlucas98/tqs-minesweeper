@@ -36,7 +36,12 @@ public class Tile {
 	}
 
 	public void setnMines(int nMines) {
-		this.nMines = nMines;
+		if(nMines < 0)
+			this.nMines = 0;
+		else if(nMines > 8)
+			this.nMines = 8;
+		else 
+			this.nMines = nMines;
 	}	
 	
 	public int getnMines() {
