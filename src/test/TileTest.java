@@ -63,6 +63,6 @@ public class TileTest {
 		tile.open();
 		assertEquals(Tile.Status.OPEN, tile.getStatus());
 		tile.open();
-		assertEquals(Tile.Status.HIDDEN, tile.getStatus());
+		assertEquals(Tile.Status.OPEN, tile.getStatus());
 	}
 }
