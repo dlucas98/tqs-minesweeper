@@ -13,7 +13,10 @@ public class Tile {
 	private int nMines;
 
 	public Tile(boolean mine) {
-		
+		this.mine = mine;
+		this.status = Tile.Status.HIDDEN;
+		this.hasCursor = false;
+		this.nMines = 0;
 	}
 	
 	public boolean hasCursor() {
@@ -41,10 +44,19 @@ public class Tile {
 	}
 	
 	public Tile.Status open() {
-
+		if(this.status.equals(Tile.Status.HIDDEN)) {
+			if(this.hasMine())
+				this.status = Tile.Status.MINE;
+			else 
+				this.status = Tile.Status.OPEN;
+		}
+		return this.status;
 	}
 	
 	public void mark() {
-		
+		if(this.status.equals(Tile.Status.HIDDEN))
+			this.status = Tile.Status.MARK;
+		if(this.status.equals(Tile.Status.MARK))
+			this.status = Tile.Status.HIDDEN;
 	}
 }
