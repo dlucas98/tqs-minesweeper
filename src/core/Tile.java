@@ -59,9 +59,6 @@ public class Tile {
 	}
 	
 	public void mark() {
-		if(this.status.equals(Tile.Status.HIDDEN))
-			this.status = Tile.Status.MARK;
-		if(this.status.equals(Tile.Status.MARK))
-			this.status = Tile.Status.HIDDEN;
+		this.status = (this.status.equals(Tile.Status.HIDDEN)) ? Tile.Status.MARK : Tile.Status.HIDDEN;
 	}
 }
