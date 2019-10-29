@@ -1,23 +1,25 @@
 package core;
 
-import java.util.Map;
+import java.util.Date;
 
 public class Score {
-	private Map<String, Integer> scores;
+	private String name;
+	private int time;
+	private Board.Dificulty difficulty;
 	
-	public Score() {
+	public Score(String name, int time, Board.Dificulty difficulty) {
 		
 	}
 	
-	public void addScore(String name, int score) {
+	public String getName() {
 		
 	}
 	
-	public Map<String, Integer> getScores() {
+	public int getTime() {
 		
 	}
 	
-	public void printScores() {
+	public int getDifficulty() {
 		
 	}
 }
