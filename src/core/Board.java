@@ -4,7 +4,8 @@ public class Board {
 	public enum Dificulty {
 		EASY,
 		MEDIUM,
-		HARD
+		HARD,
+		CUSTOM
 	}
 	private Tile[][] board;
 	private int mines;
