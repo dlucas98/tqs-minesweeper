@@ -14,12 +14,13 @@ public class RankingTest {
 	public void constructorTest() {
 		Ranking r = new Ranking("D:/mine-save");
 		assertEquals("D:/mine-save", r.getFileName());
+		Ranking rs = new Ranking(null);
+		assertEquals("mine-save", rs.getFileName());
 	}
 	
 	@Test
 	public void addTest() {
 		Ranking r = new Ranking("D:/mine-save");
-		
 		//Easy
 		Score s = new Score("David", 900, Board.Dificulty.EASY);
 		r.addScore(s);
