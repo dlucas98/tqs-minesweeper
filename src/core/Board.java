@@ -10,6 +10,8 @@ public class Board {
 	private Tile[][] board;
 	private int mines;
 	private Cursor cursor;
+	private int time;
+	private Map map;
 	
 	final int DEFAULT_WIDTH = 9;
 	final int DEFAULT_HEIGHT = 9;
@@ -47,7 +49,11 @@ public class Board {
 		
 	}
 	
-	public getTile(int x, int y) {
+	public Cursor getCursor() {
+		
+	}
+	
+	public Tile getTile(int x, int y) {
 		
 	}
 	

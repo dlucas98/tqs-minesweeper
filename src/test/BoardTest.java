@@ -1,13 +1,12 @@
 package test;
 
-import static org.junit.Assert.*;
-
-import java.util.Random;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import core.Board;
 import core.Board.Dificulty;
+import core.Cursor.Direction;
 
 public class BoardTest {
 
@@ -29,9 +28,9 @@ public class BoardTest {
 		assertEquals(10, b3.getMines());
 		
 		Board b4 = new Board(-1, -1, -10);
-		assertEquals(9, b3.getWidth());
-		assertEquals(9, b3.getHeight());
-		assertEquals(10, b3.getMines());
+		assertEquals(9, b4.getWidth());
+		assertEquals(9, b4.getHeight());
+		assertEquals(10, b4.getMines());
 
 		Board b5 = new Board(Dificulty.EASY);
 		assertEquals(9, b5.getWidth());
@@ -52,7 +51,8 @@ public class BoardTest {
 	@Test
 	public void testOpenTile() {
 		Board b = new Board();
-		//Falta fer mocks per poder fer el test de Tile t = b.openTile(...
+		b.getCursor().move(Direction.BOTTOM);
+		//Falta mock per fer l'init del taulell
 	}
 
 }
