@@ -6,9 +6,9 @@ public class Score {
 	private Board.Dificulty difficulty;
 	
 	public Score(String name, int time, Board.Dificulty difficulty) {
+		while (name.length() < 3)
+			name += '-';
 		this.name = name.toUpperCase().substring(0, 3);
-		while (this.name.length() < 3)
-			this.name += '-';
 		
 		if (time < 0)
 			this.time = 0;
