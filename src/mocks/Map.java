@@ -4,8 +4,17 @@ import core.Board;
 import core.Tile;
 
 public class Map implements interfaces.Map {
+	private Board board;
 	public Map() {
-		
+		this.board = new Board(generateEasy());
+	}
+	
+	public Map(Board.Dificulty d) {
+		this.board = new Board(generateMap(d));
+	}
+	
+	public Map(int height, int width, int mines) {
+		this.board = new Board(generateMap(height, width, mines));
 	}
 	
 	public Tile[][] generateMap(Board.Dificulty d) {
@@ -21,8 +30,28 @@ public class Map implements interfaces.Map {
 		}
 	}
 	
+	public Board getBoard() {
+		return this.board;
+	}
+	
 	public Tile[][] generateMap(int height, int width, int mines) {
-		
+		return generateCustom(height, width, mines);
+	}
+	
+	private Tile[][] generateCustom(int h, int w, int mines) {
+		Tile[][] board = new Tile[h][w];
+		int cnt = 0;
+		for (int i = 0; i < h; i++) {
+			for (int j = 0; j < w; j++) {
+				if(cnt < mines) {
+					board[i][j] = new Tile(true);
+					cnt++;
+				} else {
+					board[i][j] = new Tile(false);
+				}
+			}
+		}
+		return board;
 	}
 	
 	private Tile[][] generateEasy() {
@@ -51,10 +80,66 @@ public class Map implements interfaces.Map {
 	}
 	
 	private Tile[][] generateMedium() {
-		
+		int[][] matrix = {
+				{0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0},
+				{1,0,0,0,1,1,1,0,1,0,0,0,0,0,0,0},
+				{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0},
+				{0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1}};
+			
+			Tile[][] board = new Tile[16][16];
+			
+			for (int i = 0; i < 16; i++) {
+				for (int j = 0; j < 16; j++) {
+					if(matrix[i][j] == 1)
+						board[i][j] = new Tile(true);
+					else
+						board[i][j] = new Tile(false);
+				}
+			}
+			return board;
 	}
 	
 	private Tile[][] generateHard() {
-		
+		int[][] matrix = {
+				{0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1,0,1},
+				{0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+				{0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0},
+				{0,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0},
+				{1,0,0,0,1,1,1,0,1,0,0,1,0,0,1,0,1,0,0,0,1,0,0,1,0,0,0,1,0,0,0},
+				{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0},
+				{0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,0,1,0,0,0},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0},
+				{0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1},
+				{0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,1,0,1},
+				{0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,1,1,0,0,1,0,0,0,1,0,0,0,0,0,1,1}};
+			
+			Tile[][] board = new Tile[16][30];
+			
+			for (int i = 0; i < 16; i++) {
+				for (int j = 0; j < 30; j++) {
+					if(matrix[i][j] == 1)
+						board[i][j] = new Tile(true);
+					else
+						board[i][j] = new Tile(false);
+				}
+			}
+			return board;
 	}
 }
