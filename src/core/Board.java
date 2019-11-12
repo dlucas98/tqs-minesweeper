@@ -30,6 +30,7 @@ public class Board {
 	final int DEFAULT_HARD_MINES = 99;
 	
 	public Board(Tile[][] board) {
+		this.cursor = new Cursor(this);
 		this.board = board;
 		int mines = 0;
 		for (int i = 0; i < board.length; i++) {
