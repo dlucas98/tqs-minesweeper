@@ -7,6 +7,7 @@ import org.junit.Test;
 import core.Board;
 import core.Cursor;
 import core.Cursor.Direction;
+import mocks.Map;
 
 public class CursorTest {
 
@@ -18,7 +19,8 @@ public class CursorTest {
 	}
 	
 	public void testMove() {
-		Board b = new Board();
+		Map m = new Map();
+		Board b = m.getBoard();
 		Cursor c = new Cursor(b);
 		
 		c.move(Direction.TOP);
