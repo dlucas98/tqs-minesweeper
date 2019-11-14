@@ -63,7 +63,9 @@ public class Board {
 	}
 	
 	public Tile getTile(int x, int y) {
-		return board[y][x];
+		if(x >= 0 && x < board[0].length && y >= 0 && y < board.length)
+			return board[y][x];
+		return board[0][0];
 	}
 	
 	public void print() {
@@ -82,16 +84,17 @@ public class Board {
 	private void openXY(int x, int y) {
 		//Comprovar si som dins l'espai de caselles
 		if(x >= 0 && x < board[0].length && y >= 0 && y < board.length) {
-			board[y][x].open();
+			if(!board[y][x].hasMine())
+				board[y][x].open();
 			openXY(x - 1, y - 1);
-			openXY(x - 1, y);
 			openXY(x - 1, y + 1);
-			openXY(x, y - 1);
-			openXY(x, y + 1);
 			openXY(x + 1, y - 1);
-			openXY(x + 1, y);
 			openXY(x + 1, y + 1);
 		}
+	}
+	
+	public void openXYwrapper(int x, int y) {
+		openXY(x, y);
 	}
 	
 	public Status checkStatus() {
