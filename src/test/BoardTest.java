@@ -9,6 +9,7 @@ import core.Cursor;
 import core.Board.Dificulty;
 import core.Cursor.Direction;
 import core.Tile;
+import core.Tile.Status;
 import mocks.Map;
 
 public class BoardTest {
@@ -19,10 +20,10 @@ public class BoardTest {
 		Board b = m.getBoard();
 		assertEquals(9, b.getWidth());
 		assertEquals(9, b.getHeight());
-		assertEquals(10, b.getMines());
+		assertEquals(20, b.getMines());
 		
 		Map m2 = new Map(20, 20, 401);
-		Board b2 = m.getBoard();
+		Board b2 = m2.getBoard();
 		assertEquals(20, b2.getWidth());
 		assertEquals(20, b2.getHeight());
 		assertEquals(399, b2.getMines());
@@ -166,6 +167,18 @@ public class BoardTest {
 		//Quan intentem obrir una mina, perdem
 		b.openTile();
 		assertEquals(Board.Status.LOST, b.checkStatus());
+	}
+	
+	@Test
+	public void testOpenXY() {
+		Map m = new Map();
+		Board b = m.getBoard();
+		
+		b.openXYwrapper(0, 0);
+		assertEquals(Status.OPEN, b.getTile(0,0).getStatus());
+		assertEquals(Status.OPEN, b.getTile(1,0).getStatus());
+		assertEquals(Status.OPEN, b.getTile(0,1).getStatus());
+		assertEquals(Status.OPEN, b.getTile(1,1).getStatus());
 	}
 
 }
