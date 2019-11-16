@@ -32,19 +32,19 @@ public class BoardTest {
 		Board b3 = m3.getBoard();
 		assertEquals(9, b3.getWidth());
 		assertEquals(9, b3.getHeight());
-		assertEquals(10, b3.getMines());
+		assertEquals(20, b3.getMines());
 		
 		Map m4 = new Map(-1, -1, -10);
 		Board b4 = m4.getBoard();
 		assertEquals(9, b4.getWidth());
 		assertEquals(9, b4.getHeight());
-		assertEquals(10, b4.getMines());
+		assertEquals(20, b4.getMines());
 
 		Map m5 = new Map(Dificulty.EASY);
 		Board b5 = m5.getBoard();
 		assertEquals(9, b5.getWidth());
 		assertEquals(9, b5.getHeight());
-		assertEquals(10, b5.getMines());
+		assertEquals(20, b5.getMines());
 
 		Map m6 = new Map(Dificulty.MEDIUM);
 		Board b6 = m6.getBoard();
@@ -64,9 +64,14 @@ public class BoardTest {
 		Map m = new Map();
 		Board b = m.getBoard();
 		b.getCursor().move(Direction.BOTTOM);
+		b.openTile();
 		assertEquals(Tile.Status.OPEN, b.openTile());
 		
-		b.getCursor().move(Direction.RIGHT);
+		b.getCursor().move(Direction.BOTTOM);
+		b.getCursor().move(Direction.BOTTOM);
+		b.getCursor().move(Direction.BOTTOM);
+		b.getCursor().move(Direction.BOTTOM);
+		b.openTile();
 		assertEquals(Tile.Status.MINE, b.openTile());
 	}
 	
@@ -133,6 +138,7 @@ public class BoardTest {
 		b.getCursor().move(Cursor.Direction.BOTTOM);
 		b.openTile();
 		assertEquals(8, b.getTile().getnMines());
+		assertEquals(Status.HIDDEN, b.getTile(0, 7).getStatus());
 		assertEquals(Board.Status.IN_PROGRESS, b.checkStatus());
 
 		b.getCursor().move(Cursor.Direction.LEFT);
