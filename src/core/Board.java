@@ -37,6 +37,7 @@ public class Board {
 			for (int j = 0; j < board[i].length; j++) {
 				if(board[i][j].hasMine())
 					mines++;
+				board[i][j].setnMines(calcularNMines(i, j));
 			}
 		}
 		this.mines = mines;
@@ -63,9 +64,9 @@ public class Board {
 	}
 	
 	public Tile getTile(int x, int y) {
-		if(x >= 0 && x < board[0].length && y >= 0 && y < board.length)
-			return board[y][x];
-		return board[0][0];
+		if(y >= 0 && y < board[0].length && x >= 0 && x < board.length)
+			return board[x][y];
+		return null;
 	}
 	
 	public void print() {
@@ -73,6 +74,7 @@ public class Board {
 	}
 	
 	public Tile.Status openTile() {
+		getTile().open();
 		openXY(cursor.getY(), cursor.getX());
 		return board[cursor.getY()][cursor.getX()].getStatus();
 	}
@@ -83,13 +85,23 @@ public class Board {
 	
 	private void openXY(int x, int y) {
 		//Comprovar si som dins l'espai de caselles
-		if(x >= 0 && x < board[0].length && y >= 0 && y < board.length) {
-			if(!board[y][x].hasMine())
-				board[y][x].open();
-			openXY(x - 1, y - 1);
-			openXY(x - 1, y + 1);
-			openXY(x + 1, y - 1);
-			openXY(x + 1, y + 1);
+		if(y >= 0 && y < board[0].length && x >= 0 && x < board.length) {
+			if(!board[x][y].hasMine()) //Per obrir els mars no volem obrir les mines
+				board[x][y].open();
+			
+			//Condicions abans de cridar openxy per no fer stack overflow
+			if(x > 0)
+				if(getTile(x - 1, y).getStatus() == Tile.Status.HIDDEN && !getTile(x - 1, y).hasMine())
+					openXY(x - 1, y);
+			if(y > 0)
+				if(getTile(x, y - 1).getStatus() == Tile.Status.HIDDEN && !getTile(x, y - 1).hasMine())
+					openXY(x, y - 1);
+			if(x < board.length - 1)
+				if(getTile(x + 1, y).getStatus() == Tile.Status.HIDDEN && !getTile(x + 1, y).hasMine())
+					openXY(x + 1, y);
+			if(y < board[0].length - 1)
+				if(getTile(x, y + 1).getStatus() == Tile.Status.HIDDEN && !getTile(x, y + 1).hasMine())
+					openXY(x, y + 1);
 		}
 	}
 	
@@ -108,8 +120,48 @@ public class Board {
 			}
 		}
 		
-		if(mines == closed)
+		if(this.mines == closed)
 			return Status.WIN;
 		return Status.IN_PROGRESS;
+	}
+	
+	public int calcularNMines(int x, int y) {
+		int m = 0;
+		//(-1,-1)
+		if(x > 0 && y > 0)
+			if(board[x-1][y-1].hasMine())
+				m++;
+		//(0,-1)
+		if(y > 0)
+			if(board[x][y-1].hasMine())
+				m++;
+		//(1,-1)
+		if(x < board.length - 1 && y > 0)
+			if(board[x+1][y-1].hasMine())
+				m++;
+		
+		//(-1,0)
+		if(x > 0)
+			if(board[x-1][y].hasMine())
+				m++;
+		//(1,0)
+		if(x < board.length - 1)
+			if(board[x+1][y].hasMine())
+				m++;
+		
+		//(-1,1)
+		if(x < board.length - 1 && y < board[0].length - 1)
+			if(board[x+1][y+1].hasMine())
+				m++;
+		//(0,1)
+		if(y < board[0].length - 1)
+			if(board[x][y+1].hasMine())
+				m++;
+		//(1,1)
+		if(x < board.length - 1 && y < board[0].length - 1)
+			if(board[x+1][y+1].hasMine())
+				m++;
+		
+		return m;
 	}
 }
