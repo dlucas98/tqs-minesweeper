@@ -17,17 +17,17 @@ public class Board {
 	private Cursor cursor;
 	private int time;
 	
-	final int DEFAULT_WIDTH = 9;
-	final int DEFAULT_HEIGHT = 9;
-	final int DEFAULT_MINES = 20;
+	public static final int DEFAULT_WIDTH = 9;
+	public static final int DEFAULT_HEIGHT = 9;
+	public static final int DEFAULT_MINES = 20;
 
-	final int DEFAULT_INTERMEDIATE_WIDTH = 16;
-	final int DEFAULT_INTERMEDIATE_HEIGHT = 16;
-	final int DEFAULT_INTERMEDIATE_MINES = 40;
+	public static final int DEFAULT_INTERMEDIATE_WIDTH = 16;
+	public static final int DEFAULT_INTERMEDIATE_HEIGHT = 16;
+	public static final int DEFAULT_INTERMEDIATE_MINES = 40;
 	
-	final int DEFAULT_HARD_WIDTH = 30;
-	final int DEFAULT_HARD_HEIGHT = 16;
-	final int DEFAULT_HARD_MINES = 99;
+	public static final int DEFAULT_HARD_WIDTH = 30;
+	public static final int DEFAULT_HARD_HEIGHT = 16;
+	public static final int DEFAULT_HARD_MINES = 99;
 	
 	public Board(Tile[][] board) {
 		this.cursor = new Cursor(this);
