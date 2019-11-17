@@ -141,11 +141,13 @@ public class MinesweeperTest {
 		m.updateFrame();
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
 		
-		m.updateFrame();
 		String s3 = "1-EASY\n" + 
 					"2-INTERMEDIATE\n" + 
 					"3-HARD\n";
 		i.sendKey('1');
+		m.updateFrame();
+		assertEquals(s3, m.getOutput().getBuffer());
+		
 		i.sendKey('1');
 		m.updateFrame();
 		

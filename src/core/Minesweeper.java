@@ -57,7 +57,7 @@ public class Minesweeper {
 	}
 	
 	private void printDifficultyMenu() {
-		
+		output.print("1-EASY\n2-INTERMEDIATE\n3-HARD\n");
 	}
 	
 	private void printHighScores() {
@@ -72,13 +72,12 @@ public class Minesweeper {
 		char c = getInput().readKey();
 		switch(c) {
 		case '1':
-			if(getActualMenu() == MenuStatus.MAIN_MENU)
-				status = MenuStatus.CHOOSE_DIFFICULTY;
-			else if(getActualMenu() == MenuStatus.CHOOSE_DIFFICULTY) {
+			if(getActualMenu() == MenuStatus.CHOOSE_DIFFICULTY) {
 				status = MenuStatus.BOARD;
 				Map m = new Map(Board.Dificulty.EASY);
 				this.board = m.getBoard();
-			}
+			} else if(getActualMenu() == MenuStatus.MAIN_MENU)
+				status = MenuStatus.CHOOSE_DIFFICULTY;
 			break;
 		case '2':
 			if(getActualMenu() == MenuStatus.MAIN_MENU)
@@ -98,11 +97,11 @@ public class Minesweeper {
 			break;
 		case '0':
 			if(getActualMenu() == MenuStatus.MAIN_MENU) {
-				//Exit
-			} else if(getActualMenu() == MenuStatus.CHOOSE_DIFFICULTY || getActualMenu() == MenuStatus.HIGH_SCORES)
+				output.print("Good bye!");
+				System.exit(0);
+			} else {
 				status = MenuStatus.MAIN_MENU;
-			else if(getActualMenu() == MenuStatus.BOARD)
-				status = MenuStatus.MAIN_MENU;
+			}
 			break;
 		case 'w':
 			if(getActualMenu() == MenuStatus.BOARD)
