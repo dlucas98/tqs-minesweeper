@@ -102,5 +102,195 @@ public class MinesweeperTest {
 		i.sendKey('0');
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
 	}
+	
+	@Test
+	public void testGui() {
+		Minesweeper m = new Minesweeper(new Input());
+		Input i = (Input)m.getInput();
+		m.updateFrame();
+		String s =  "1-Play\n"+
+					"2-HighScores\n"+
+					"0-Exit";
+		
+		assertEquals(s, m.getOutput().getBuffer());
+		
+		String s2 = "EASY\n" + 
+					"1-\n" + 
+					"2-\n" + 
+					"3-\n" + 
+					"4-\n" + 
+					"5-\n" + 
+					"INTERMEDIATE\n" + 
+					"1-\n" + 
+					"2-\n" + 
+					"3-\n" + 
+					"4-\n" + 
+					"5-\n" + 
+					"HARD\n" + 
+					"1-\n" + 
+					"2-\n" + 
+					"3-\n" + 
+					"4-\n" + 
+					"5-\n";
+		i.sendKey('2');
+		m.updateFrame();
+		assertEquals(s2, m.getOutput().getBuffer());
+		assertEquals(Minesweeper.MenuStatus.HIGH_SCORES, m.getActualMenu());
+		
+		i.sendKey('0');
+		m.updateFrame();
+		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
+		
+		m.updateFrame();
+		String s3 = "1-EASY\n" + 
+					"2-INTERMEDIATE\n" + 
+					"3-HARD\n";
+		i.sendKey('1');
+		i.sendKey('1');
+		m.updateFrame();
+		
+		String s4 = "[#]# # # # # # # # \n" +
+					" # # # # # # # # # \n" +
+					" # # # # # # # # # \n" +
+					" # # # # # # # # # \n" +
+					" # # # # # # # # # \n" +
+					" # # # # # # # # # \n" +
+					" # # # # # # # # # \n" +
+					" # # # # # # # # # \n" +
+					" # # # # # # # # # \n";
+		assertEquals(s4, m.getOutput().getBuffer());
+		
+		i.sendKey('o');
+		m.updateFrame();
+		
+		String s5 = "[ ]        2 # # # \n" +
+					"           3 # # # \n" +
+					"           2 # # # \n" +
+					"           1 2 3 2 \n" +
+					" 2 3 3 2 1         \n" +
+					" # # # # 2         \n" +
+					" # # # # 3         \n" +
+					" # # # # 3         \n" +
+					" # # # # 2         \n";
+		assertEquals(s5, m.getOutput().getBuffer());
+		
+		i.sendKey('d');
+		m.updateFrame();
+		String s6 = "  [ ]      2 # # # \n" +
+					"           3 # # # \n" +
+					"           2 # # # \n" +
+					"           1 2 3 2 \n" +
+					" 2 3 3 2 1         \n" +
+					" # # # # 2         \n" +
+					" # # # # 3         \n" +
+					" # # # # 3         \n" +
+					" # # # # 2         \n";
+		assertEquals(s6, m.getOutput().getBuffer());
+		
+		i.sendKey('d');
+		m.updateFrame();
+		i.sendKey('d');
+		m.updateFrame();
+		i.sendKey('d');
+		m.updateFrame();
+		i.sendKey('d');
+		m.updateFrame();
+		i.sendKey('d');
+		m.updateFrame();
+		i.sendKey('d');
+		m.updateFrame();
+		i.sendKey('s');
+		m.updateFrame();
+
+		String s7 = "           2 # # # \n" +
+					"           3 #[#]# \n" +
+					"           2 # # # \n" +
+					"           1 2 3 2 \n" +
+					" 2 3 3 2 1         \n" +
+					" # # # # 2         \n" +
+					" # # # # 3         \n" +
+					" # # # # 3         \n" +
+					" # # # # 2         \n";
+		assertEquals(s7, m.getOutput().getBuffer());
+
+		i.sendKey('o');
+		m.updateFrame();
+		String s8 = "           2 # # # \n" +
+					"           3 #[8]# \n" +
+					"           2 # # # \n" +
+					"           1 2 3 2 \n" +
+					" 2 3 3 2 1         \n" +
+					" # # # # 2         \n" +
+					" # # # # 3         \n" +
+					" # # # # 3         \n" +
+					" # # # # 2         \n";
+		assertEquals(s8, m.getOutput().getBuffer());
+
+		i.sendKey('a');
+		m.updateFrame();
+		i.sendKey('m');
+		m.updateFrame();
+		String s9 = "           2 # # # \n" +
+					"           3[X]8 # \n" +
+					"           2 # # # \n" +
+					"           1 2 3 2 \n" +
+					" 2 3 3 2 1         \n" +
+					" # # # # 2         \n" +
+					" # # # # 3         \n" +
+					" # # # # 3         \n" +
+					" # # # # 2         \n";
+		assertEquals(s9, m.getOutput().getBuffer());
+
+		i.sendKey('a');
+		m.updateFrame();
+		i.sendKey('a');
+		m.updateFrame();
+		i.sendKey('a');
+		m.updateFrame();
+		i.sendKey('a');
+		m.updateFrame();
+		i.sendKey('a');
+		m.updateFrame();
+		i.sendKey('d');
+		m.updateFrame();
+		i.sendKey('d');
+		m.updateFrame();
+		i.sendKey('d');
+		m.updateFrame();
+		i.sendKey('d');
+		m.updateFrame();
+		i.sendKey('d');
+		m.updateFrame();
+		i.sendKey('d');
+		m.updateFrame();
+		i.sendKey('o');
+		m.updateFrame();
+		/*String s10 = "           2 # # # \n" +
+					 "           3 X 8 # \n" +
+					 "           2 # # # \n" +
+					 "           1 2 3 2 \n" +
+					 " 2 3 3 2 1         \n" +
+					 " # # # # 2         \n" +
+					 " # # # # 3         \n" +
+					 " 2[5]# # 3         \n" +
+					 "   2 # # 2         \n";*/
+		String s10 = "YOU WON!\n" +
+					 "\n" + 
+					 "Enter your name: \n";
+		assertEquals(s10, m.getOutput().getBuffer());
+		i.sendKey('D');
+		m.updateFrame();
+		String s11 = "YOU WON!\n" +
+					 "\n" + 
+					 "Enter your name: \n" + 
+					 "D";
+		assertEquals(s11, m.getOutput().getBuffer());
+		i.sendKey('A');
+		m.updateFrame();
+		i.sendKey('V');
+		m.updateFrame();
+		
+		assertEquals(s, m.getOutput().getBuffer());
+	}
 
 }
