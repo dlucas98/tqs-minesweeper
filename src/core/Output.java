@@ -1,5 +1,6 @@
 package core;
 
+
 public class Output {
 	private String buffer;
 	public Output() {
