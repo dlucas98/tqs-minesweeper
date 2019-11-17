@@ -1,5 +1,7 @@
 package core;
 
+import core.Cursor.Direction;
+
 public class Board {
 	public enum Dificulty {
 		EASY,
@@ -68,6 +70,12 @@ public class Board {
 		if(y >= 0 && y < board[0].length && x >= 0 && x < board.length)
 			return board[x][y];
 		return null;
+	}
+	
+	public void moveCursor(Direction d) {
+		getTile().setHasCursor(false);
+		getCursor().move(d);
+		getTile().setHasCursor(true);
 	}
 	
 	public String print() {
