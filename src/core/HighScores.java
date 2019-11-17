@@ -3,9 +3,16 @@ package core;
 import java.awt.List;
 
 public class HighScores {
-	private List scores;
 	
 	public HighScores() {
+		
+	}
+	
+	private void readScores() {
+		
+	}
+	
+	private void weriteScores() {
 		
 	}
 	
@@ -13,11 +20,7 @@ public class HighScores {
 		
 	}
 	
-	public List getScores() {
-		
-	}
-	
-	public void printScores() {
+	public String printScores() {
 		
 	}
 }
