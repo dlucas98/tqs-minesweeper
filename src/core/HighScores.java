@@ -12,11 +12,23 @@ public class HighScores {
 		
 	}
 	
-	private void weriteScores() {
+	private void writeScores() {
 		
 	}
 	
 	public void addScore(Score s) {
+		
+	}
+	
+	public List getEasyScores() {
+			
+	}
+		
+	public List getIntermediateScores() {
+		
+	}
+	
+	public List getHardScores() {
 		
 	}
 	
