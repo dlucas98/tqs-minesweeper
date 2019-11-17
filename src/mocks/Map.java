@@ -17,6 +17,11 @@ public class Map implements interfaces.Map {
 		this.board = new Board(generateMap(height, width, mines));
 	}
 	
+	public static Board genMap(Board.Dificulty d) {
+		Map m = new Map(d);
+		return m.getBoard();
+	}
+	
 	public Tile[][] generateMap(Board.Dificulty d) {
 		switch(d) {
 			case EASY:
