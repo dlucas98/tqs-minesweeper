@@ -188,8 +188,8 @@ public class Board {
 				m++;
 		
 		//(-1,1)
-		if(x < board.length - 1 && y < board[0].length - 1)
-			if(board[x+1][y+1].hasMine())
+		if(x > 0 && y < board[0].length - 1)
+			if(board[x-1][y+1].hasMine())
 				m++;
 		//(0,1)
 		if(y < board[0].length - 1)
