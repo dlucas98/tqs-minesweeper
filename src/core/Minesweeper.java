@@ -62,7 +62,7 @@ public class Minesweeper {
 		highScores.printScores();
 	}
 	
-	private void printBoard() { 
+	private void printBoard() {
 		board.print();
 	}
 	
@@ -126,6 +126,21 @@ public class Minesweeper {
 			case 'm':
 				if(getActualMenu() == MenuStatus.BOARD)
 					getBoard().getTile().mark();
+				break;
+			}
+			
+			switch(getActualMenu()) {
+			case MAIN_MENU:
+				printMenu();
+				break;
+			case HIGH_SCORES:
+				printHighScores();
+				break;
+			case CHOOSE_DIFFICULTY:
+				printDifficultyMenu();
+				break;
+			case BOARD:
+				printBoard();
 				break;
 			}
 		}
