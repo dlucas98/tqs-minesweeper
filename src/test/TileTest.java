@@ -68,8 +68,10 @@ public class TileTest {
 		assertEquals(Tile.Status.HIDDEN, tile.getStatus());
 		tile.open();
 		assertEquals(Tile.Status.OPEN, tile.getStatus());
+		assertEquals(false, tile.hasMine());
 		tile.open();
 		assertEquals(Tile.Status.OPEN, tile.getStatus());
+		assertEquals(false, tile.hasMine());
 	}
 	
 	@Test
