@@ -1,19 +1,19 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import core.Board;
 import core.Minesweeper;
 import core.Tile;
 import mocks.Input;
+import mocks.Map;
 
 public class MinesweeperTest {
 
 	@Test
 	public void testEasyGame() {
-		Minesweeper m = new Minesweeper(new Input());
+		Minesweeper m = new Minesweeper(new Input(), new Map());
 		Input i = (Input)m.getInput(); //Cast to mock to call sendKey()		
 
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
@@ -29,7 +29,7 @@ public class MinesweeperTest {
 	
 	@Test
 	public void testMediumGame() {
-		Minesweeper m = new Minesweeper(new Input());
+		Minesweeper m = new Minesweeper(new Input(), new Map());
 		Input i = (Input)m.getInput(); //Cast to mock to call sendKey()		
 
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
@@ -45,7 +45,7 @@ public class MinesweeperTest {
 	
 	@Test
 	public void testHardGame() {
-		Minesweeper m = new Minesweeper(new Input());
+		Minesweeper m = new Minesweeper(new Input(), new Map());
 		Input i = (Input)m.getInput(); //Cast to mock to call sendKey()		
 
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
@@ -61,7 +61,7 @@ public class MinesweeperTest {
 	
 	@Test
 	public void testHighScores() {
-		Minesweeper m = new Minesweeper(new Input());
+		Minesweeper m = new Minesweeper(new Input(), new Map());
 		Input i = (Input)m.getInput(); //Cast to mock to call sendKey()		
 		
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
@@ -73,7 +73,7 @@ public class MinesweeperTest {
 	
 	@Test
 	public void test() {
-		Minesweeper m = new Minesweeper(new Input());
+		Minesweeper m = new Minesweeper(new Input(), new Map());
 		Input i = (Input)m.getInput(); //Cast to mock to call sendKey()		
 
 		//Test menu
@@ -105,7 +105,7 @@ public class MinesweeperTest {
 	
 	@Test
 	public void testGui() {
-		Minesweeper m = new Minesweeper(new Input());
+		Minesweeper m = new Minesweeper(new Input(), new Map());
 		Input i = (Input)m.getInput();
 		m.updateFrame();
 		String s =  "1-Play\n"+
@@ -253,17 +253,17 @@ public class MinesweeperTest {
 		m.updateFrame();
 		i.sendKey('a');
 		m.updateFrame();
-		i.sendKey('d');
+		i.sendKey('s');
 		m.updateFrame();
-		i.sendKey('d');
+		i.sendKey('s');
 		m.updateFrame();
-		i.sendKey('d');
+		i.sendKey('s');
 		m.updateFrame();
-		i.sendKey('d');
+		i.sendKey('s');
 		m.updateFrame();
-		i.sendKey('d');
+		i.sendKey('s');
 		m.updateFrame();
-		i.sendKey('d');
+		i.sendKey('s');
 		m.updateFrame();
 		i.sendKey('o');
 		m.updateFrame();
@@ -278,19 +278,19 @@ public class MinesweeperTest {
 					 "   2 # # 2         \n";*/
 		String s10 = "YOU WON!\n" +
 					 "\n" + 
-					 "Enter your name: \n";
+					 "Enter your name:\n";
 		assertEquals(s10, m.getOutput().getBuffer());
-		i.sendKey('D');
+		/*i.sendKey('D');
 		m.updateFrame();
 		String s11 = "YOU WON!\n" +
 					 "\n" + 
-					 "Enter your name: \n" + 
+					 "Enter your name:\n" + 
 					 "D";
 		assertEquals(s11, m.getOutput().getBuffer());
 		i.sendKey('A');
 		m.updateFrame();
 		i.sendKey('V');
-		m.updateFrame();
+		m.updateFrame();*/
 		
 		assertEquals(s, m.getOutput().getBuffer());
 	}
