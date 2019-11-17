@@ -69,8 +69,35 @@ public class Board {
 		return null;
 	}
 	
-	public void print() {
-		
+	public String print() {
+		String ret = "";
+		char pre = ' ';
+		char post = ' ';
+		char tile = ' ';
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				switch (board[i][j].getStatus()) {
+				case HIDDEN:
+					tile = '#';
+					break;
+				case OPEN:
+					tile = ' ';
+					break;
+				case MARK:
+					tile = 'X';
+					break;
+				case MINE:
+					tile = '*';
+					break;
+				}
+				if(board[i][j].hasCursor()) {
+					pre = '[';
+					post = ']';
+				}
+				ret += pre + tile + post;
+			}
+		}
+		return ret;
 	}
 	
 	public Tile.Status openTile() {
