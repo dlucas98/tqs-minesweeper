@@ -13,10 +13,10 @@ public class HighScoresTest {
 	@Test
 	public void testConstructor() {
 		HighScores hs = new HighScores();
-		assertEquals(0, hs.getEasyScores().getSize());
+		assertEquals(0, hs.getEasyScores().size());
 		
 		hs.addScore(new Score("Player", 10, Board.Dificulty.EASY));
-		assertEquals(1, hs.getEasyScores().getSize());
+		assertEquals(1, hs.getEasyScores().size());
 
 		String s = "EASY\n"
 				+ "1-PLA\t10\n"
@@ -40,19 +40,19 @@ public class HighScoresTest {
 		
 
 		hs.addScore(new Score("Pl2", 9, Board.Dificulty.EASY));
-		assertEquals(2, hs.getEasyScores().getSize());
-		assertEquals(0, hs.getIntermediateScores().getSize());
-		assertEquals(0, hs.getHardScores().getSize());
+		assertEquals(2, hs.getEasyScores().size());
+		assertEquals(0, hs.getIntermediateScores().size());
+		assertEquals(0, hs.getHardScores().size());
 		
 		hs.addScore(new Score("MED", 100, Board.Dificulty.MEDIUM));
-		assertEquals(2, hs.getEasyScores().getSize());
-		assertEquals(1, hs.getIntermediateScores().getSize());
-		assertEquals(0, hs.getHardScores().getSize());
+		assertEquals(2, hs.getEasyScores().size());
+		assertEquals(1, hs.getIntermediateScores().size());
+		assertEquals(0, hs.getHardScores().size());
 		
 		hs.addScore(new Score("har", 10, Board.Dificulty.HARD));
-		assertEquals(2, hs.getEasyScores().getSize());
-		assertEquals(1, hs.getIntermediateScores().getSize());
-		assertEquals(1, hs.getHardScores().getSize());
+		assertEquals(2, hs.getEasyScores().size());
+		assertEquals(1, hs.getIntermediateScores().size());
+		assertEquals(1, hs.getHardScores().size());
 		
 		String s2 = "EASY\n"
 				+ "1-PL2\t9\n"
