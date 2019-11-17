@@ -5,7 +5,7 @@ public class Score {
 	private long time;
 	private Board.Dificulty difficulty;
 	
-	public Score(String name, int time, Board.Dificulty difficulty) {
+	public Score(String name, long time, Board.Dificulty difficulty) {
 		while (name.length() < 3)
 			name += '-';
 		this.name = name.toUpperCase().substring(0, 3);
