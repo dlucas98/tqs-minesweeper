@@ -111,8 +111,14 @@ public class Board {
 				}
 				if(j == 0)
 					ret += pre + tile + post;
-				else
-					ret += tile + post;
+				else {
+					if(board[i][j].hasCursor()) {
+						ret = ret.substring(0, ret.length() - 1);
+						ret += pre + tile + post;
+					} else {
+						ret += tile + post;
+					}
+				}
 			}
 			ret += "\n";
 		}
