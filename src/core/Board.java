@@ -41,6 +41,7 @@ public class Board {
 			}
 		}
 		this.mines = mines;
+		this.board[0][0].setHasCursor(true);
 	}
 	
 	public int getMines() {
@@ -71,31 +72,41 @@ public class Board {
 	
 	public String print() {
 		String ret = "";
-		char pre = ' ';
-		char post = ' ';
-		char tile = ' ';
+		String pre = " ";
+		String post = " ";
+		String tile = " ";
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
 				switch (board[i][j].getStatus()) {
 				case HIDDEN:
-					tile = '#';
+					tile = "#";
 					break;
 				case OPEN:
-					tile = ' ';
+					if(board[i][j].getnMines() == 0)
+						tile = " ";
+					else
+						tile = String.valueOf(board[i][j].getnMines());
 					break;
 				case MARK:
-					tile = 'X';
+					tile = "X";
 					break;
 				case MINE:
-					tile = '*';
+					tile = "*";
 					break;
 				}
 				if(board[i][j].hasCursor()) {
-					pre = '[';
-					post = ']';
+					pre = "[";
+					post = "]";
+				} else {
+					pre = " ";
+					post = " ";
 				}
-				ret += pre + tile + post;
+				if(j == 0)
+					ret += pre + tile + post;
+				else
+					ret += tile + post;
 			}
+			ret += "\n";
 		}
 		return ret;
 	}
