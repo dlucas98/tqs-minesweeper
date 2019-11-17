@@ -1,5 +1,7 @@
 package core;
 
+import java.time.Instant;
+
 import core.Cursor.Direction;
 
 public class Board {
@@ -17,7 +19,8 @@ public class Board {
 	private Tile[][] board;
 	private int mines;
 	private Cursor cursor;
-	private int time;
+	private long time;
+	private Board.Dificulty difficulty;
 	
 	public static final int DEFAULT_WIDTH = 9;
 	public static final int DEFAULT_HEIGHT = 9;
@@ -34,6 +37,14 @@ public class Board {
 	public Board(Tile[][] board) {
 		this.cursor = new Cursor(this);
 		this.board = board;
+
+		if(board.length == 9)
+			this.difficulty = Board.Dificulty.EASY;
+		if(board.length == 16)
+			this.difficulty = Board.Dificulty.MEDIUM;
+		if(board.length == 30)
+			this.difficulty = Board.Dificulty.HARD;
+		
 		int mines = 0;
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
@@ -44,6 +55,10 @@ public class Board {
 		}
 		this.mines = mines;
 		this.board[0][0].setHasCursor(true);
+	
+		//Will be used to calculate score
+		Instant instant = Instant.now();
+		time = instant.getEpochSecond();
 	}
 	
 	public int getMines() {
@@ -70,6 +85,14 @@ public class Board {
 		if(y >= 0 && y < board[0].length && x >= 0 && x < board.length)
 			return board[x][y];
 		return null;
+	}
+	
+	public long getTime() {
+		return this.time;
+	}
+	
+	public Board.Dificulty getDifficulty() {
+		return this.difficulty;
 	}
 	
 	public void moveCursor(Direction d) {
