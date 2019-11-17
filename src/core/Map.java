@@ -16,6 +16,11 @@ public class Map implements interfaces.Map {
 		this.board = new Board(generateMap(height, width, mines));
 	}
 	
+	public static Board genMap(Board.Dificulty d) {
+		Map m = new Map(d);
+		return m.getBoard();
+	}
+	
 	public Tile[][] generateMap(Board.Dificulty d) {
 		switch(d) {
 			case EASY:
@@ -44,7 +49,7 @@ public class Map implements interfaces.Map {
 		while(pMines < mines) {
 			for (int i = 0; i < w; i++) {
 				for (int j = 0; j < h; j++) {
-					if(!board[i][j].hasMine()) {
+					if(board[i][j] == null || !board[i][j].hasMine()) {
 						if(r.nextInt(11) == 1) {
 							pMines++;
 							board[i][j] = new Tile(true);
