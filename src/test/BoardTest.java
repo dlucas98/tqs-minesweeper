@@ -60,6 +60,14 @@ public class BoardTest {
 	}
 	
 	@Test
+	public void testGetTile() {
+		Map m = new Map();
+		Board b = m.getBoard();
+		//Test invalid case
+		assertEquals(null, b.getTile(-1,-1));
+	}
+	
+	@Test
 	public void testOpenTile() {
 		Map m = new Map();
 		Board b = m.getBoard();
@@ -187,4 +195,52 @@ public class BoardTest {
 		assertEquals(Status.OPEN, b.getTile(1,1).getStatus());
 	}
 
+	@Test
+	public void testGui() {
+		Map m = new Map();
+		Board b = m.getBoard(Dificulty.EASY);
+		
+		String s = "[#]# # # # # # # # \n" +
+				   " # # # # # # # # # \n" +
+				   " # # # # # # # # # \n" +
+				   " # # # # # # # # # \n" +
+				   " # # # # # # # # # \n" +
+				   " # # # # # # # # # \n" +
+				   " # # # # # # # # # \n" +
+				   " # # # # # # # # # \n" +
+				   " # # # # # # # # # \n";
+		assertEquals(s, b.print());
+		
+		b.openTile();
+
+		String s2 = "[ ]        2 # # # \n" +
+					"           3 # # # \n" +
+					"           2 # # # \n" +
+					"           1 2 3 2 \n" +
+					" 2 3 3 2 1         \n" +
+					" # # # # 2         \n" +
+					" # # # # 3         \n" +
+					" # # # # 3         \n" +
+					" # # # # 2         \n";
+		assertEquals(s2, b.print());
+
+		b.moveCursor(Direction.RIGHT);
+		b.moveCursor(Direction.RIGHT);
+		b.moveCursor(Direction.RIGHT);
+		b.moveCursor(Direction.RIGHT);
+		b.moveCursor(Direction.RIGHT);
+		b.moveCursor(Direction.RIGHT);
+		b.openTile();
+		String s3 = "           2[*]# # \n" +
+					"           3 # # # \n" +
+					"           2 # # # \n" +
+					"           1 2 3 2 \n" +
+					" 2 3 3 2 1         \n" +
+					" # # # # 2         \n" +
+					" # # # # 3         \n" +
+					" # # # # 3         \n" +
+					" # # # # 2         \n";
+		assertEquals(s3, b.print());
+	}
+	
 }
