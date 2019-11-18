@@ -28,6 +28,7 @@ public class Minesweeper {
 		this.output = new Output();
 		this.status = MenuStatus.MAIN_MENU;
 		this.playername = "";
+		this.map = new Map();
 	}
 	
 	public Minesweeper(interfaces.Input input, interfaces.Map map) {
