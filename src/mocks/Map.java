@@ -43,8 +43,6 @@ public class Map implements interfaces.Map {
 	}
 	
 	private Tile[][] generateCustom(int h, int w, int mines) {
-		//return generateM();
-		
 		if(h < 1 || w < 1)
 			return generateEasy();
 		
@@ -80,24 +78,6 @@ public class Map implements interfaces.Map {
 		
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
-				if(matrix[i][j] == 1)
-					board[i][j] = new Tile(true);
-				else
-					board[i][j] = new Tile(false);
-			}
-		}
-		return board;
-	}
-	
-	private Tile[][] generateM() {
-		int[][] matrix = {
-			{0,1,0},
-			{0,1,0}};
-		
-		Tile[][] board = new Tile[2][3];
-		
-		for (int i = 0; i < 2; i++) {
-			for (int j = 0; j < 3; j++) {
 				if(matrix[i][j] == 1)
 					board[i][j] = new Tile(true);
 				else
