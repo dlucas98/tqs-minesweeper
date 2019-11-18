@@ -26,7 +26,7 @@ public class Map implements interfaces.Map {
 			case HARD:
 				return generateHard();
 			default:
-				return null;
+				return generateEasy();
 		}
 	}
 	
