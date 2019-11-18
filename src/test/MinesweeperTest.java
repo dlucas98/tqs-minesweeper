@@ -274,6 +274,15 @@ public class MinesweeperTest {
 					" # # # # 2         \n";
 		assertEquals(s9, m.getOutput().getBuffer());
 
+		//Statement coverage
+		i.sendKey('1');
+		m.updateFrame();
+		i.sendKey('2');
+		m.updateFrame();
+		i.sendKey('3');
+		m.updateFrame();
+		assertEquals(s9, m.getOutput().getBuffer());
+		
 		i.sendKey('a');
 		m.updateFrame();
 		i.sendKey('a');
@@ -308,20 +317,48 @@ public class MinesweeperTest {
 					 " 2[5]# # 3         \n" +
 					 "   2 # # 2         \n";*/
 		String s10 = "YOU WON!\n" +
-					 "\n" + 
-					 "Enter your name:\n";
+				 "\n" + 
+				 "Enter your name:\n";
 		assertEquals(s10, m.getOutput().getBuffer());
-		/*i.sendKey('D');
+	
+		i.sendKey('D');
 		m.updateFrame();
 		String s11 = "YOU WON!\n" +
 					 "\n" + 
-					 "Enter your name:\n" + 
-					 "D";
+					 "Enter your name:\nd";
 		assertEquals(s11, m.getOutput().getBuffer());
+
 		i.sendKey('A');
 		m.updateFrame();
+		String s12 = "YOU WON!\n" +
+				 "\n" + 
+				 "Enter your name:\nda";
+		assertEquals(s12, m.getOutput().getBuffer());
+
 		i.sendKey('V');
-		m.updateFrame();*/
+		m.updateFrame();
+		String s13 = "EASY\n" + 
+				"1-DAV\t0\n" + 
+				"2-\n" + 
+				"3-\n" + 
+				"4-\n" + 
+				"5-\n" + 
+				"INTERMEDIATE\n" + 
+				"1-\n" + 
+				"2-\n" + 
+				"3-\n" + 
+				"4-\n" + 
+				"5-\n" + 
+				"HARD\n" + 
+				"1-\n" + 
+				"2-\n" + 
+				"3-\n" + 
+				"4-\n" + 
+				"5-\n";
+		assertEquals(s13, m.getOutput().getBuffer());
+
+		i.sendKey('0');
+		m.updateFrame();
 		
 		assertEquals(s, m.getOutput().getBuffer());
 	}
