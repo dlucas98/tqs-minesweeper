@@ -12,8 +12,8 @@ public class HighScoresTest {
 
 	@Test
 	public void testConstructor() {
+		//Test if HighScores works correctly, we test each difficulty.
 		HighScores hs = new HighScores();
-		//hs.emptyScores();
 		assertEquals(0, hs.getEasyScores().size());
 		
 		hs.addScore(new Score("Player", 10, Board.Dificulty.EASY));
@@ -86,7 +86,13 @@ public class HighScoresTest {
 		hs.addScore(new Score("Pl2", 99, Board.Dificulty.HARD));
 		hs.addScore(new Score("Pl2", 111, Board.Dificulty.HARD));
 		
+		//Should not be added to any list
 		hs.addScore(new Score("Pl2", 111, Board.Dificulty.CUSTOM));
+		
+		//Check if we added correctly each score to its list
+		assertEquals(3, hs.getEasyScores().size());
+		assertEquals(3, hs.getIntermediateScores().size());
+		assertEquals(4, hs.getHardScores().size());
 	}
 
 }

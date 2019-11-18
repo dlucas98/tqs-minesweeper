@@ -16,6 +16,7 @@ public class BoardTest {
 
 	@Test
 	public void testConstructor() {
+		//Test if we are able to generate every type of Board
 		Map m = new Map();
 		Board b = m.getBoard();
 		assertEquals(Board.DEFAULT_WIDTH, b.getWidth());
@@ -61,14 +62,15 @@ public class BoardTest {
 	
 	@Test
 	public void testGetTile() {
+		//Test invalid case of getTile() method.
 		Map m = new Map();
 		Board b = m.getBoard();
-		//Test invalid case
 		assertEquals(null, b.getTile(-1,-1));
 	}
 	
 	@Test
 	public void testOpenTile() {
+		//Test if Cursor and Tile are working correctly
 		Map m = new Map();
 		Board b = m.getBoard();
 		b.getCursor().move(Direction.BOTTOM);
@@ -85,6 +87,7 @@ public class BoardTest {
 	
 	@Test
 	public void testMarkTile() {
+		//Test if we can mark a Tile using Cursor instance
 		Map m = new Map();
 		Board b = m.getBoard();
 		assertEquals(Tile.Status.HIDDEN, b.getTile().getStatus());
@@ -96,29 +99,30 @@ public class BoardTest {
 	
 	@Test
 	public void testCursor() {
+		//Test uf we cab move correctly the Cursor instance
 		Map m = new Map();
 		Board b = m.getBoard();
 
-		//Test posicio inicial
+		//Test initial position
 		assertEquals(0, b.getCursor().getX());
 		assertEquals(0, b.getCursor().getY());
 
-		//Test posicio inferior
+		//Test bottom movement
 		b.getCursor().move(Cursor.Direction.BOTTOM);
 		assertEquals(0, b.getCursor().getX());
 		assertEquals(1, b.getCursor().getY());
 
-		//Test a la dreta
+		//Test right movement
 		b.getCursor().move(Cursor.Direction.RIGHT);
 		assertEquals(1, b.getCursor().getX());
 		assertEquals(1, b.getCursor().getY());
 
-		//Test cap amunt
+		//Test top movement
 		b.getCursor().move(Cursor.Direction.TOP);
 		assertEquals(1, b.getCursor().getX());
 		assertEquals(0, b.getCursor().getY());
 		
-		//Test a la esquerra
+		//Test left movement
 		b.getCursor().move(Cursor.Direction.LEFT);
 		assertEquals(0, b.getCursor().getX());
 		assertEquals(0, b.getCursor().getY());
@@ -126,6 +130,7 @@ public class BoardTest {
 	
 	@Test
 	public void testGame() {
+		//Test if we can finish successfully a game
 		Map m = new Map();
 		Board b = m.getBoard();
 
@@ -167,7 +172,7 @@ public class BoardTest {
 	
 	@Test
 	public void testLose() {
-		//Provem una partida en la que perdem
+		//Test if we lose a game when we open a mine
 		Map m = new Map();
 		Board b = m.getBoard();
 		
@@ -178,13 +183,14 @@ public class BoardTest {
 		b.getCursor().move(Cursor.Direction.BOTTOM);
 		b.getCursor().move(Cursor.Direction.BOTTOM);
 
-		//Quan intentem obrir una mina, perdem
+		//Open a mine and check if we lost
 		b.openTile();
 		assertEquals(Board.Status.LOST, b.checkStatus());
 	}
 	
 	@Test
 	public void testOpenXY() {
+		//Check if we can successfully open tiles recursively
 		Map m = new Map();
 		Board b = m.getBoard();
 		
@@ -197,6 +203,7 @@ public class BoardTest {
 
 	@Test
 	public void testGui() {
+		//Check if print() method works correctly
 		Map m = new Map();
 		Board b = m.getBoard(Dificulty.EASY);
 		

@@ -16,19 +16,24 @@ public class MinesweeperTest {
 
 	@Test
 	public void testEasyGame() {
+		/*
+		 * Test graphical methods.
+		 * AFTER SENDING A KEY TO INPUT WITH Input.sendKey(char) 
+		 * WE ALWAYS NEED TO call Minesweeper.updateFrame()
+		 */
 		Minesweeper m = new Minesweeper(new Input(), new Map());
 		Input i = (Input)m.getInput(); //Cast to mock to call sendKey()		
 
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
-		i.sendKey('1');
-		m.updateFrame();
+		i.sendKey('1'); //Click play
+		m.updateFrame(); //Call updateFrame to read the sent key
 		assertEquals(Minesweeper.MenuStatus.CHOOSE_DIFFICULTY, m.getActualMenu());
 		i.sendKey('1');
 		m.updateFrame();
 		assertEquals(Minesweeper.MenuStatus.BOARD, m.getActualMenu());
 		assertEquals(20, m.getBoard().getMines()); //20 mines means EASY board
 		
-		i.sendKey('0');
+		i.sendKey('0'); //Return to main menu
 		m.updateFrame();
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
 	}
@@ -39,16 +44,16 @@ public class MinesweeperTest {
 		Input i = (Input)m.getInput(); //Cast to mock to call sendKey()		
 
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
-		i.sendKey('1');
+		i.sendKey('1'); //Click play
 		m.updateFrame();
 		assertEquals(Minesweeper.MenuStatus.CHOOSE_DIFFICULTY, m.getActualMenu());
-		i.sendKey('2');
+		i.sendKey('2'); //Select Medium difficulty
 		m.updateFrame();
 		assertEquals(Minesweeper.MenuStatus.BOARD, m.getActualMenu());
 		assertEquals(40, m.getBoard().getMines()); //40 mines means MEDIUM board
 		assertEquals(Board.Dificulty.MEDIUM, m.getBoard().getDifficulty());
 		
-		i.sendKey('0');
+		i.sendKey('0'); //Return to main menu
 		m.updateFrame();
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
 	}
@@ -59,16 +64,16 @@ public class MinesweeperTest {
 		Input i = (Input)m.getInput(); //Cast to mock to call sendKey()		
 
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
-		i.sendKey('1');
+		i.sendKey('1'); //Click play
 		m.updateFrame();
 		assertEquals(Minesweeper.MenuStatus.CHOOSE_DIFFICULTY, m.getActualMenu());
-		i.sendKey('3');
+		i.sendKey('3'); //Select Hard difficulty
 		m.updateFrame();
 		assertEquals(Minesweeper.MenuStatus.BOARD, m.getActualMenu());
 		assertEquals(99, m.getBoard().getMines()); //99 mines means HARD board
 		assertEquals(Board.Dificulty.HARD, m.getBoard().getDifficulty());
 		
-		i.sendKey('0');
+		i.sendKey('0'); //Return to main menu
 		m.updateFrame();
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
 	}
@@ -79,10 +84,10 @@ public class MinesweeperTest {
 		Input i = (Input)m.getInput(); //Cast to mock to call sendKey()		
 		
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
-		i.sendKey('2');
+		i.sendKey('2'); //Select high scores
 		m.updateFrame();
 		assertEquals(Minesweeper.MenuStatus.HIGH_SCORES, m.getActualMenu());
-		i.sendKey('0');
+		i.sendKey('0'); //Return no main menu
 		m.updateFrame();
 		assertEquals(Minesweeper.MenuStatus.MAIN_MENU, m.getActualMenu());
 	}
@@ -131,6 +136,7 @@ public class MinesweeperTest {
 	
 	@Test
 	public void testGui() {
+		//Test if the correct values are being printed or not
 		Minesweeper m = new Minesweeper(new Input(), new Map());
 		Input i = (Input)m.getInput();
 		m.updateFrame();
@@ -365,6 +371,7 @@ public class MinesweeperTest {
 
 	@Test
 	public void testLost() {
+		//Test a lost game case. We check if the correct values are being printed or not.
 		Minesweeper m = new Minesweeper(new Input(), new Map());
 		Input i = (Input)m.getInput();
 		m.updateFrame();
@@ -398,6 +405,7 @@ public class MinesweeperTest {
 	
 	@Test
 	public void testMovementOutsideBoard() {
+		//Test what happens if we try to move when we are in the menus
 		Minesweeper m = new Minesweeper(new Input(), new Map());
 		Input i = (Input)m.getInput();
 		m.updateFrame();

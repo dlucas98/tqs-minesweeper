@@ -10,6 +10,7 @@ public class OutputTest {
 
 	@Test
 	public void test() {
+		//Test if getBuffer() method works correctly
 		Minesweeper m = new Minesweeper();
 		
 		m.getOutput().print("TEXT");

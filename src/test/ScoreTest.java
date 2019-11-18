@@ -11,6 +11,9 @@ public class ScoreTest {
 
 	@Test
 	public void testConstructor() {
+		// Testing the constructor is working correctly in each difficulty level. 
+		// Also testing the player name input. The only format accepted is AAA, if it is different,
+		// the game itself cuts off the name.
 		Score s = new Score("Player1", 100, Board.Dificulty.EASY);
 		assertEquals("PLA", s.getName());
 		assertEquals(100, s.getTime());
@@ -30,6 +33,11 @@ public class ScoreTest {
 		assertEquals("A--", s4.getName());
 		assertEquals(0, s4.getTime());
 		assertEquals(Board.Dificulty.HARD, s4.getDifficulty());
+		
+		Score s5 = new Score("a", 0, Board.Dificulty.CUSTOM);
+		assertEquals("Ah-", s4.getName());
+		assertEquals(0, s5.getTime());
+		assertEquals(Board.Dificulty.CUSTOM, s5.getDifficulty());
 	}
 
 }
