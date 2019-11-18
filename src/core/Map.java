@@ -29,7 +29,7 @@ public class Map implements interfaces.Map {
 			case HARD:
 				return generateHard();
 			default:
-				return null;
+				return generateEasy();
 		}
 	}
 	
@@ -43,18 +43,26 @@ public class Map implements interfaces.Map {
 	
 	private Tile[][] generateBoard(int h, int w, int mines) {
 		Random r = new Random();
-		Tile[][] board = new Tile[w][h];
+		Tile[][] board = new Tile[h][w];
 		int pMines = 0;
+		boolean end = false;
+		
+		for (int i = 0; i < h; i++)
+			for (int j = 0; j < w; j++)
+				board[i][j] = new Tile(false);
+		
 		while(pMines < mines) {
-			for (int i = 0; i < w; i++) {
-				for (int j = 0; j < h; j++) {
-					if(board[i][j] == null || !board[i][j].hasMine()) {
+			for (int i = 0; i < h; i++) {
+				for (int j = 0; j < w; j++) {
+					if(!board[i][j].hasMine()) {
+						if(end)
+							break;
 						if(r.nextInt(11) == 1) {
 							pMines++;
 							board[i][j] = new Tile(true);
+							if(pMines == mines)
+								end = true;
 						}
-						else
-							board[i][j] = new Tile(false);
 					}
 				}
 			}
