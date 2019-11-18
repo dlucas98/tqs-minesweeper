@@ -5,9 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class HighScores {
+public class HighScores implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private LinkedList<Score> easyScores;
 	private LinkedList<Score> intermediateScores;
 	private LinkedList<Score> hardScores;
@@ -18,36 +21,7 @@ public class HighScores {
 		hardScores = new LinkedList<Score>();
 	}
 	
-	private void readScores() {
-		try {
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("scores"));
-			HighScores obj = (HighScores)ois.readObject();
-			
-			for (Score score : obj.getEasyScores())
-				easyScores.add(score);
-			for (Score score : obj.getIntermediateScores())
-				easyScores.add(score);
-			for (Score score : obj.getHardScores())
-				easyScores.add(score);
-			ois.close();
-		} catch (Exception e) {
-			
-		}
-	}
-	
-	private void writeScores() {
-		try {
-			FileOutputStream f = new FileOutputStream(new File("scores"));
-			ObjectOutputStream o = new ObjectOutputStream(f);
-			o.writeObject(this);
-			o.close();
-		} catch (Exception e) {
-			
-		}
-	}
-	
 	public void addScore(Score s) {
-		readScores();
 		boolean added = false;
 		switch (s.getDifficulty()) {
 		case EASY:
@@ -86,7 +60,6 @@ public class HighScores {
 		default:
 			break;
 		}
-		writeScores();
 	}
 	
 	public LinkedList<Score> getEasyScores() {
