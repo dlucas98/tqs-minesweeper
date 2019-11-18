@@ -64,7 +64,7 @@ public class Minesweeper {
 	}
 	
 	private void printHighScores() {
-		output.print(highScores.printScores());
+		output.print(getHighScores().printScores());
 	}
 	
 	private void printBoard() {
@@ -82,7 +82,7 @@ public class Minesweeper {
 		output.print(n3);
 		
 		name = n1 + n2 + n3;
-		highScores.addScore(new Score(name, board.getTime(), board.getDifficulty()));
+		getHighScores().addScore(new Score(name, board.getTime(), board.getDifficulty()));
 	}
 	
 	private void printLost() {
