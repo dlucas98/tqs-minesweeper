@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import core.Minesweeper;
 import core.Tile;
+import core.Board.Dificulty;
 import mocks.Input;
 import mocks.Map;
 
@@ -295,4 +296,29 @@ public class MinesweeperTest {
 		assertEquals(s, m.getOutput().getBuffer());
 	}
 
+	@Test
+	public void testLost() {
+		Minesweeper m = new Minesweeper(new Input(), new Map());
+		Input i = (Input)m.getInput();
+		m.updateFrame();
+		//i.sendNudes(true);
+		//enter difficulty menu
+		i.sendKey('1');
+		m.updateFrame();
+		//select easy board
+		i.sendKey('1');
+		m.updateFrame();
+		//move to mined tile
+		i.sendKey('d');
+		i.sendKey('d');
+		i.sendKey('d');
+		i.sendKey('d');
+		i.sendKey('d');
+		i.sendKey('d');
+		i.sendKey('o');
+		m.updateFrame();
+		
+		String s = "GAME OVER";
+		assertEquals(s, m.getOutput().getBuffer());
+	}
 }
