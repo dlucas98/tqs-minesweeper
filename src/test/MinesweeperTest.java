@@ -310,15 +310,22 @@ public class MinesweeperTest {
 		m.updateFrame();
 		//move to mined tile
 		i.sendKey('d');
+		m.updateFrame();
 		i.sendKey('d');
+		m.updateFrame();
 		i.sendKey('d');
+		m.updateFrame();
 		i.sendKey('d');
+		m.updateFrame();
 		i.sendKey('d');
+		m.updateFrame();
 		i.sendKey('d');
+		m.updateFrame();
 		i.sendKey('o');
 		m.updateFrame();
 		
 		String s = "GAME OVER";
+		assertEquals(Minesweeper.MenuStatus.LOST, m.getActualMenu());
 		assertEquals(s, m.getOutput().getBuffer());
 	}
 }
