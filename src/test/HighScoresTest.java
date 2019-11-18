@@ -55,16 +55,6 @@ public class HighScoresTest {
 		assertEquals(1, hs.getIntermediateScores().size());
 		assertEquals(1, hs.getHardScores().size());
 		
-		//Statement coverage
-		hs.addScore(new Score("Pl2", 11, Board.Dificulty.EASY));
-		hs.addScore(new Score("Pl2", 90, Board.Dificulty.MEDIUM));
-		hs.addScore(new Score("Pl2", 119, Board.Dificulty.MEDIUM));
-		hs.addScore(new Score("Pl2", -1, Board.Dificulty.HARD));
-		hs.addScore(new Score("Pl2", 99, Board.Dificulty.HARD));
-		hs.addScore(new Score("Pl2", 111, Board.Dificulty.HARD));
-		
-		hs.addScore(new Score("Pl2", 111, Board.Dificulty.CUSTOM));
-		
 		String s2 = "EASY\n"
 				+ "1-PL2\t9\n"
 				+ "2-PLA\t10\n"
@@ -84,6 +74,19 @@ public class HighScoresTest {
 				+ "4-\n"
 				+ "5-\n";
 		assertEquals(s2, hs.printScores());
+		
+		
+		//Statement coverage
+		hs.addScore(new Score("Pl2", 11, Board.Dificulty.EASY));
+		
+		hs.addScore(new Score("Pl2", 90, Board.Dificulty.MEDIUM));
+		hs.addScore(new Score("Pl2", 119, Board.Dificulty.MEDIUM));
+		
+		hs.addScore(new Score("Pl2", -1, Board.Dificulty.HARD));
+		hs.addScore(new Score("Pl2", 99, Board.Dificulty.HARD));
+		hs.addScore(new Score("Pl2", 111, Board.Dificulty.HARD));
+		
+		hs.addScore(new Score("Pl2", 111, Board.Dificulty.CUSTOM));
 	}
 
 }
