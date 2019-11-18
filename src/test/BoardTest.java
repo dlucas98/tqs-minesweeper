@@ -18,9 +18,9 @@ public class BoardTest {
 	public void testConstructor() {
 		Map m = new Map();
 		Board b = m.getBoard();
-		assertEquals(9, b.getWidth());
-		assertEquals(9, b.getHeight());
-		assertEquals(20, b.getMines());
+		assertEquals(Board.DEFAULT_WIDTH, b.getWidth());
+		assertEquals(Board.DEFAULT_HEIGHT, b.getHeight());
+		assertEquals(Board.DEFAULT_MINES, b.getMines());
 		
 		Map m2 = new Map(20, 20, 401);
 		Board b2 = m2.getBoard();
@@ -30,33 +30,33 @@ public class BoardTest {
 		
 		Map m3 = new Map(0, 0, 0);
 		Board b3 = m3.getBoard();
-		assertEquals(9, b3.getWidth());
-		assertEquals(9, b3.getHeight());
-		assertEquals(20, b3.getMines());
+		assertEquals(Board.DEFAULT_WIDTH, b3.getWidth());
+		assertEquals(Board.DEFAULT_HEIGHT, b3.getHeight());
+		assertEquals(Board.DEFAULT_MINES, b3.getMines());
 		
 		Map m4 = new Map(-1, -1, -10);
 		Board b4 = m4.getBoard();
-		assertEquals(9, b4.getWidth());
-		assertEquals(9, b4.getHeight());
-		assertEquals(20, b4.getMines());
+		assertEquals(Board.DEFAULT_WIDTH, b4.getWidth());
+		assertEquals(Board.DEFAULT_HEIGHT, b4.getHeight());
+		assertEquals(Board.DEFAULT_MINES, b4.getMines());
 
 		Map m5 = new Map(Dificulty.EASY);
 		Board b5 = m5.getBoard();
-		assertEquals(9, b5.getWidth());
-		assertEquals(9, b5.getHeight());
-		assertEquals(20, b5.getMines());
+		assertEquals(Board.DEFAULT_WIDTH, b5.getWidth());
+		assertEquals(Board.DEFAULT_HEIGHT, b5.getHeight());
+		assertEquals(Board.DEFAULT_MINES, b5.getMines());
 
 		Map m6 = new Map(Dificulty.MEDIUM);
 		Board b6 = m6.getBoard();
-		assertEquals(16, b6.getWidth());
-		assertEquals(16, b6.getHeight());
-		assertEquals(40, b6.getMines());
+		assertEquals(Board.DEFAULT_INTERMEDIATE_WIDTH, b6.getWidth());
+		assertEquals(Board.DEFAULT_INTERMEDIATE_HEIGHT, b6.getHeight());
+		assertEquals(Board.DEFAULT_INTERMEDIATE_MINES, b6.getMines());
 
 		Map m7 = new Map(Dificulty.HARD);
 		Board b7 = m7.getBoard();
-		assertEquals(30, b7.getWidth());
-		assertEquals(16, b7.getHeight());
-		assertEquals(99, b7.getMines());
+		assertEquals(Board.DEFAULT_HARD_WIDTH, b7.getWidth());
+		assertEquals(Board.DEFAULT_HARD_HEIGHT, b7.getHeight());
+		assertEquals(Board.DEFAULT_HARD_MINES, b7.getMines());
 	}
 	
 	@Test
