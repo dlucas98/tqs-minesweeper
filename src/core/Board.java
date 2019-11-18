@@ -38,11 +38,11 @@ public class Board {
 		this.cursor = new Cursor(this);
 		this.board = board;
 
-		if(board.length == 9)
+		if(board[0].length == DEFAULT_HEIGHT)
 			this.difficulty = Board.Dificulty.EASY;
-		if(board.length == 16)
+		if(board[0].length == DEFAULT_INTERMEDIATE_HEIGHT)
 			this.difficulty = Board.Dificulty.MEDIUM;
-		if(board.length == 30)
+		if(board[0].length == DEFAULT_HARD_HEIGHT)
 			this.difficulty = Board.Dificulty.HARD;
 		
 		int mines = 0;
