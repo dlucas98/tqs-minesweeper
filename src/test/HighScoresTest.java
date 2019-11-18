@@ -13,6 +13,7 @@ public class HighScoresTest {
 	@Test
 	public void testConstructor() {
 		HighScores hs = new HighScores();
+		//hs.emptyScores();
 		assertEquals(0, hs.getEasyScores().size());
 		
 		hs.addScore(new Score("Player", 10, Board.Dificulty.EASY));
@@ -43,7 +44,7 @@ public class HighScoresTest {
 		assertEquals(2, hs.getEasyScores().size());
 		assertEquals(0, hs.getIntermediateScores().size());
 		assertEquals(0, hs.getHardScores().size());
-		
+
 		hs.addScore(new Score("MED", 100, Board.Dificulty.MEDIUM));
 		assertEquals(2, hs.getEasyScores().size());
 		assertEquals(1, hs.getIntermediateScores().size());
@@ -53,6 +54,16 @@ public class HighScoresTest {
 		assertEquals(2, hs.getEasyScores().size());
 		assertEquals(1, hs.getIntermediateScores().size());
 		assertEquals(1, hs.getHardScores().size());
+		
+		//Statement coverage
+		hs.addScore(new Score("Pl2", 11, Board.Dificulty.EASY));
+		hs.addScore(new Score("Pl2", 90, Board.Dificulty.MEDIUM));
+		hs.addScore(new Score("Pl2", 119, Board.Dificulty.MEDIUM));
+		hs.addScore(new Score("Pl2", -1, Board.Dificulty.HARD));
+		hs.addScore(new Score("Pl2", 99, Board.Dificulty.HARD));
+		hs.addScore(new Score("Pl2", 111, Board.Dificulty.HARD));
+		
+		hs.addScore(new Score("Pl2", 111, Board.Dificulty.CUSTOM));
 		
 		String s2 = "EASY\n"
 				+ "1-PL2\t9\n"
