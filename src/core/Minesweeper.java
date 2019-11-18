@@ -86,7 +86,7 @@ public class Minesweeper {
 	}
 	
 	private void printLost() {
-		
+		output.print("GAME OVER");
 	}
 	
 	public void updateFrame() {
@@ -105,15 +105,12 @@ public class Minesweeper {
 				status = MenuStatus.HIGH_SCORES;
 			else if(getActualMenu() == MenuStatus.CHOOSE_DIFFICULTY) {
 				status = MenuStatus.BOARD;
-				//Map m = new Map(Board.Dificulty.MEDIUM);
 				this.board = map.getBoard(Board.Dificulty.MEDIUM);
 			}
 			break;
 		case '3':
 			if(getActualMenu() == MenuStatus.CHOOSE_DIFFICULTY) {
 				status = MenuStatus.BOARD;
-				//Map m = new Map(Board.Dificulty.HARD);
-				//this.board = m.getBoard();
 				this.board = map.getBoard(Board.Dificulty.HARD);
 			}
 			break;
@@ -142,12 +139,13 @@ public class Minesweeper {
 				getBoard().moveCursor(Direction.RIGHT);
 			break;
 		case 'o':
-			if(getActualMenu() == MenuStatus.BOARD)
+			if(getActualMenu() == MenuStatus.BOARD) {
 				getBoard().openTile();
 				if(getBoard().checkStatus() == Status.WIN)
 					status = MenuStatus.WON;
 				if(getBoard().checkStatus() == Status.LOST)
 					status = MenuStatus.LOST;
+			}
 			break;
 		case 'm':
 			if(getActualMenu() == MenuStatus.BOARD)
